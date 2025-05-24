@@ -1,4 +1,6 @@
-![PRfectbot Logo](./brand/PRfectbot.ai.png)
+<p align="center">
+  <img src="./brand/PRfectbot.ai.png" alt="PRfectbot Logo" height="100">
+</p>
 
 # PRfectbot
 
