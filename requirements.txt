@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-vercel-python
 pytest
 pytest-asyncio
 httpx
