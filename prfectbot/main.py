@@ -26,4 +26,8 @@ async def webhook(request: Request):
                 logging.warning(f"🤖 PRfectbot is warming up its fixing lasers! Pew pew! 🚀 Clone result: {result}")
             return {"status": "fix requested"}
         return Response(status_code=status.HTTP_204_NO_CONTENT)
-    return Response(status_code=status.HTTP_204_NO_CONTENT) 
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+@app.get("/")
+def root():
+    return "Hello, are you ready to PRfect your Pull Requests?" 
