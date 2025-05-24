@@ -1,7 +1,5 @@
 {
   "version": 2,
   "builds": [{ "src": "api/index.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }],
-  "projectId": "prj_Zm7w7ycZ1RFvzfOKVi96ijLDCEJi",
-  "orgId": "team_MHTTujy7zERo5cU1MiAn2nvy"
+  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }]
 }

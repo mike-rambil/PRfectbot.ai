@@ -5,20 +5,15 @@ on:
     branches:
       - main
 
+env:
+  VERCEL_PAT: ${{ secrets.VERCEL_PAT }}
+  VERCEL_TEAM_ID: ${{ vars.VERCEL_TEAM_ID }}
+  VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+
 jobs:
   check-env-vars:
     runs-on: ubuntu-latest
     environment: production
-    steps:
-      - name: Check VERCEL_PAT and VERCEL_PROJECT_NAME length
-        run: |
-          VERCEL_PAT_LEN=${#VERCEL_PAT}
-          VERCEL_PROJECT_NAME_LEN=${#VERCEL_PROJECT_NAME}
-          echo "VERCEL_PAT length: $VERCEL_PAT_LEN"
-          echo "VERCEL_PROJECT_NAME length: $VERCEL_PROJECT_NAME_LEN"
-        env:
-          VERCEL_PAT: ${{ secrets.VERCEL_PAT }}
-          VERCEL_PROJECT_NAME: ${{ vars.VERCEL_PROJECT_NAME }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -27,6 +22,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to Vercel
-        run: npx vercel --prod --token ${{ secrets.VERCEL_PAT }} --yes
-        env:
-          VERCEL_PAT: ${{ secrets.VERCEL_PAT }}
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --org=${{ env.VERCEL_TEAM_ID }} --project=${{ env.VERCEL_PROJECT_ID }}
