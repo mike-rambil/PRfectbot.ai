@@ -30,4 +30,3 @@ jobs:
         run: npx vercel --prod --token ${{ secrets.VERCEL_PAT }} --yes
         env:
           VERCEL_PAT: ${{ secrets.VERCEL_PAT }}
-          VERCEL_PROJECT_NAME: ${{ vars.VERCEL_PROJECT_NAME }}
