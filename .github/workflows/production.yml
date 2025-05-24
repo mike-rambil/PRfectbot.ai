@@ -24,6 +24,9 @@ jobs:
     needs: check-env-vars
     environment: production
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install -g vercel
       - name: Deploy to Vercel
         run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --org=${{ env.VERCEL_TEAM_ID }} --project=${{ env.VERCEL_PROJECT_ID }}
