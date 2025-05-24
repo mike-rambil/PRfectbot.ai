@@ -29,4 +29,4 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --scope=${{ env.VERCEL_TEAM_ID }} --project=${{ env.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --scope=${{ env.VERCEL_TEAM_ID }}
