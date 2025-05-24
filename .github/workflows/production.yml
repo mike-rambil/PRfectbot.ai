@@ -24,4 +24,4 @@ jobs:
       - name: Build with Vercel
         run: vercel build
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --scope=${{ env.VERCEL_ORG_ID }}
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_PAT }} --scope=${{ env.VERCEL_ORG_ID }} --archive=tgz
