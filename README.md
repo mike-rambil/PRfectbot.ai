@@ -1,4 +1,4 @@
-![PRfectbot Logo](@PRfectbot.ai.png)
+![PRfectbot Logo](./brands/PRfectbot.ai.png)
 
 # PRfectbot
 
