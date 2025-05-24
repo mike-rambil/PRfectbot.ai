@@ -1,8 +1,13 @@
 <p align="center">
   <img src="./brand/PRfectbot.ai.png" alt="PRfectbot Logo" height="100">
 </p>
+<h1 align="center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">
+  🤖 PRfectbot
+</h1>
+<p align="center" style="font-style: italic; color: #555;">
+  Your perfect GitHub PR assistant
+</p>
 
-# PRfectbot
 
 ## How to Run the Bot in a Pull Request (PR)
 
