@@ -15,4 +15,4 @@ def test_detects_mention_without_fix():
 
 def test_no_mention():
     assert not is_fix_requested("Please fix this")
-    assert not is_fix_requested("Hey bot, fix this") 
+    assert not is_fix_requested("Hey bot, fix this")

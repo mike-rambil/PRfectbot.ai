@@ -6,42 +6,42 @@ from unittest.mock import patch
 client = TestClient(app)
 
 PR_COMMENT_FIX_EVENT = {
-    'action': 'created',
-    'pull_request': {
-        'number': 101,
-        'head': {
-            'ref': 'feature-branch',
-            'repo': {
-                'owner': {'login': 'octocat'},
-                'name': 'Hello-World',
+    "action": "created",
+    "pull_request": {
+        "number": 101,
+        "head": {
+            "ref": "feature-branch",
+            "repo": {
+                "owner": {"login": "octocat"},
+                "name": "Hello-World",
             },
         },
     },
-    'repository': {
-        'owner': {'login': 'octocat'},
-        'name': 'Hello-World',
+    "repository": {
+        "owner": {"login": "octocat"},
+        "name": "Hello-World",
     },
-    'issue': {'number': 101},
-    'comment': {'body': '@PRfectbot fix this please'},
+    "issue": {"number": 101},
+    "comment": {"body": "@PRfectbot fix this please"},
 }
 
 PR_COMMENT_NO_FIX_EVENT = {
-    'action': 'created',
-    'issue': {'number': 42},
-    'repository': {
-        'owner': {'login': 'octocat'},
-        'name': 'Hello-World',
+    "action": "created",
+    "issue": {"number": 42},
+    "repository": {
+        "owner": {"login": "octocat"},
+        "name": "Hello-World",
     },
-    'comment': {'body': '@PRfectbot just checking in'},
+    "comment": {"body": "@PRfectbot just checking in"},
 }
 
 PUSH_EVENT = {
-    'ref': 'refs/heads/main',
-    'before': 'oldsha',
-    'after': 'newsha',
-    'repository': {
-        'owner': {'login': 'octocat'},
-        'name': 'Hello-World',
+    "ref": "refs/heads/main",
+    "before": "oldsha",
+    "after": "newsha",
+    "repository": {
+        "owner": {"login": "octocat"},
+        "name": "Hello-World",
     },
 }
 
@@ -67,9 +67,9 @@ def test_webhook_ignores_push_event():
 
 def test_webhook_calls_clone_pr_branch_on_fix():
     headers = {"X-GitHub-Event": "issue_comment"}
-    with patch('prfectbot.main.clone_pr_branch') as mock_clone:
+    with patch("prfectbot.main.clone_pr_branch") as mock_clone:
         mock_clone.return_value = True
         response = client.post("/webhook", json=PR_COMMENT_FIX_EVENT, headers=headers)
         # Should be called with correct arguments (repo_owner, repo_name, branch, tmpdir)
         assert mock_clone.call_count == 1
-        assert response.status_code == 200 
+        assert response.status_code == 200

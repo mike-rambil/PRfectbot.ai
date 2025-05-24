@@ -1,13 +1,18 @@
 from fastapi import FastAPI, Request, Response, status
-from prfectbot.github_events import parse_pr_comment_event, is_fix_requested, extract_pr_repo_branch
+from prfectbot.github_events import (
+    parse_pr_comment_event,
+    is_fix_requested,
+    extract_pr_repo_branch,
+)
 from prfectbot.gitutils import clone_pr_branch
 import logging
 import tempfile
 from fastapi.responses import HTMLResponse
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 app = FastAPI()
+
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
@@ -22,6 +27,7 @@ async def log_requests(request: Request, call_next):
     logging.info(f"Response headers: {dict(response.headers)}")
     return response
 
+
 @app.post("/webhook")
 async def webhook(request: Request):
     event = request.headers.get("X-GitHub-Event")
@@ -34,19 +40,22 @@ async def webhook(request: Request):
             # Use a temp dir for cloning
             with tempfile.TemporaryDirectory() as tmpdir:
                 result = clone_pr_branch(
-                    pr_info.get('repo_owner'),
-                    pr_info.get('repo_name'),
-                    pr_info.get('branch'),
-                    tmpdir
+                    pr_info.get("repo_owner"),
+                    pr_info.get("repo_name"),
+                    pr_info.get("branch"),
+                    tmpdir,
                 )
-                logging.warning(f"🤖 PRfectbot is warming up its fixing lasers! Pew pew! 🚀 Clone result: {result}")
+                logging.warning(
+                    f"🤖 PRfectbot is warming up its fixing lasers! Pew pew! 🚀 Clone result: {result}"
+                )
             return {"status": "fix requested"}
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+
 @app.get("/", response_class=HTMLResponse)
 def root():
-    return '''
+    return """
     <div style="text-align:center; font-family:sans-serif; padding:2em;">
       <img src="/static/@PRfectbot.ai.png" alt="PRfectbot Logo" style="width:120px; border-radius:24px; box-shadow:0 2px 8px #0001; margin-bottom:1em;"/>
       <h1>Welcome to <span style="color:#0070f3;">PRfectbot</span>!</h1>
@@ -60,4 +69,4 @@ def root():
       </ol>
       <p style="margin-top:2em; color:#555;">Mention <b>@PRfectbot fix ...</b> in a PR comment to trigger automated fixes.</p>
     </div>
-    ''' 
+    """
