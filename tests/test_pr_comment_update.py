@@ -1,9 +1,6 @@
 import pytest
 from unittest.mock import patch
-
-# Example function to post PR comment (to be implemented in main code)
-def post_pr_comment(repo_owner, repo_name, pr_number, message):
-    pass
+from prfectbot.github_api import post_pr_comment
 
 def test_post_pr_comment_success():
     with patch('prfectbot.github_api.post_comment') as mock_post:

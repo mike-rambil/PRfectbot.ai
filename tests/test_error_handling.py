@@ -1,9 +1,6 @@
 import pytest
 from unittest.mock import patch
-
-# Example function to handle webhook event (to be implemented in main code)
-def handle_webhook_event(event_type, payload):
-    pass
+from prfectbot.webhook_handler import handle_webhook_event
 
 def test_unsupported_event():
     assert handle_webhook_event('unknown_event', {}) == {'error': 'unsupported event'}
