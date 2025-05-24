@@ -1,13 +1,19 @@
 <p align="center">
   <img src="./brand/PRfectbot.ai.png" alt="PRfectbot Logo" height="100">
 </p>
-<h1 align="center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">
-  🤖 PRfectbot
-</h1>
-<p align="center" style="font-style: italic; color: #555;">
-  Your perfect GitHub PR assistant
-</p>
 
+# PRfectbot
+
+## How to Install PRfectbot in Your Repository
+
+1. Go to the PRfectbot GitHub App installation page:
+   - [Install PRfectbot](https://github.com/apps/prfectbot/installations/new)
+2. Select the account or organization where you want to install the app.
+3. Choose the repositories you want the bot to access (all or specific ones).
+4. Click **Install** to complete the process.
+5. Ensure the app has the required permissions and that your webhook endpoint is set up if self-hosting.
+
+---
 
 ## How to Run the Bot in a Pull Request (PR)
 

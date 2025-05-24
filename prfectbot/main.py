@@ -3,6 +3,7 @@ from prfectbot.github_events import parse_pr_comment_event, is_fix_requested, ex
 from prfectbot.gitutils import clone_pr_branch
 import logging
 import tempfile
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -28,6 +29,20 @@ async def webhook(request: Request):
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def root():
-    return "Hello, are you ready to PRfect your Pull Requests?" 
+    return '''
+    <div style="text-align:center; font-family:sans-serif; padding:2em;">
+      <img src="/static/@PRfectbot.ai.png" alt="PRfectbot Logo" style="width:120px; border-radius:24px; box-shadow:0 2px 8px #0001; margin-bottom:1em;"/>
+      <h1>Welcome to <span style="color:#0070f3;">PRfectbot</span>!</h1>
+      <p style="font-size:1.2em;">Automate your PR fixes with a single comment.</p>
+      <h2>🚀 How to Install</h2>
+      <ol style="text-align:left; display:inline-block; margin:0 auto; font-size:1.1em;">
+        <li>Go to the <a href="https://github.com/apps/prfectbot/installations/new" target="_blank">PRfectbot GitHub App installation page</a>.</li>
+        <li>Select your account or organization.</li>
+        <li>Choose the repositories to install the bot on.</li>
+        <li>Click <b>Install</b> and you're done!</li>
+      </ol>
+      <p style="margin-top:2em; color:#555;">Mention <b>@PRfectbot fix ...</b> in a PR comment to trigger automated fixes.</p>
+    </div>
+    ''' 
