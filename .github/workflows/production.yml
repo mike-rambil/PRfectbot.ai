@@ -11,17 +11,8 @@ env:
   VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
 
 jobs:
-  check-env-vars:
-    runs-on: ubuntu-latest
-    environment: production
-
-    steps:
-      - name: Check env vars
-        run: echo "Checking env vars..."
-
   deploy:
     runs-on: ubuntu-latest
-    needs: check-env-vars
     environment: production
     steps:
       - name: Checkout code
