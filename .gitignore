@@ -1,5 +1,6 @@
 # Exclude secrets folder
 secrets/
+.cursor/
 
 # Exclude all .env files except sample.env
 .env
