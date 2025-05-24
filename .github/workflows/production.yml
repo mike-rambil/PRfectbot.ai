@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to Vercel
-        run: npx vercel --prod --token ${{ secrets.VERCEL_PAT }} --confirm --project ${{ vars.VERCEL_PROJECT_NAME }}
+        run: npx vercel --prod --token ${{ secrets.VERCEL_PAT }} --confirm
         env:
           VERCEL_PAT: ${{ secrets.VERCEL_PAT }}
           VERCEL_PROJECT_NAME: ${{ vars.VERCEL_PROJECT_NAME }}
