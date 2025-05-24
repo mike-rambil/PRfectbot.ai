@@ -1,0 +1,29 @@
+# Exclude secrets folder
+secrets/
+
+# Exclude all .env files except sample.env
+.env
+!sample.env
+
+# Python ignores
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+ENV/
+.env.bak
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.cache/
+.tox/
+
+# VSCode settings
+.vscode/
