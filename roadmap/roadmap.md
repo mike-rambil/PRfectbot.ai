@@ -1,5 +1,7 @@
 # PRfectbot Development Roadmap (TDD)
 
+> **Note:** The auto-fix on @PRfectbot mention feature is being integrated soon! A placeholder is present in the code and will be replaced with the full implementation.
+
 ## 1. GitHub App Integration
 
 - [ ] 1.1. Register GitHub App and configure permissions

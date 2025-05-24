@@ -87,7 +87,7 @@ Here's a step-by-step **workflow and integration guide**:
   > `@PRfectbot fix the PEP8 issues here please`
 
 - Show a diff summary
-- Post warnings for things it couldn’t fix
+- Post warnings for things it couldn't fix
 
 ---
 
@@ -98,5 +98,9 @@ Here's a step-by-step **workflow and integration guide**:
 - **Git Operations**: Use `GitPython` or shell commands
 - **GitHub API**: `PyGithub` or direct REST/GraphQL calls
 - **Deployment**: Docker + Fly.io / Railway / AWS / Cloud Run
+
+---
+
+**Note:** The auto-fix on @PRfectbot mention feature is being integrated soon! A placeholder is present in the code and will be replaced with the full implementation.
 
 ---

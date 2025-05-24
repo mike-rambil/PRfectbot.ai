@@ -6,6 +6,7 @@ client = TestClient(app)
 
 def test_webhook_post():
     headers = {"X-GitHub-Event": "issue_comment"}
-    response = client.post("/webhook", json={"test": "data"}, headers=headers)
+    data = {"comment": {"body": "@PRfectbot fix this please"}}
+    response = client.post("/webhook", json=data, headers=headers)
     assert response.status_code == 200
-    assert response.json() == {"status": "received"} 
+    assert response.json() == {"status": "fix requested"} 
