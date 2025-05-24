@@ -5,7 +5,22 @@ import logging
 import tempfile
 from fastapi.responses import HTMLResponse
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+
 app = FastAPI()
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logging.info(f"Request: {request.method} {request.url}")
+    logging.info(f"Path: {request.url.path}")
+    logging.info(f"Query params: {request.query_params}")
+    logging.info(f"Headers: {dict(request.headers)}")
+    logging.info(f"Client IP: {request.client.host if request.client else 'unknown'}")
+    logging.info(f"Cookies: {request.cookies}")
+    response = await call_next(request)
+    logging.info(f"Response status: {response.status_code}")
+    logging.info(f"Response headers: {dict(response.headers)}")
+    return response
 
 @app.post("/webhook")
 async def webhook(request: Request):
