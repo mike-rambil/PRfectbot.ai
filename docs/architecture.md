@@ -11,6 +11,7 @@ The key components include:
   - Runs code formatters (`black` and `prettier`).
   - Commits and pushes any changes back to the branch.
 - **Git Utilities** (`prfectbot/gitutils.py`)
-  - Encapsulate git operations and command execution.
+  - Encapsulate git operations and command execution, including the
+    `run_git_clone` function used by `clone_pr_branch`.
 
 Tests cover each part of this flow, ensuring the bot behaves correctly without requiring network access.

@@ -20,6 +20,7 @@ This document explains how PRfectbot automatically processes pull requests when 
 - `prfectbot/pr_processor.py` – high level orchestration of cloning, linting, and pushing fixes.
 - `prfectbot/gitutils.py` – helper functions for cloning repositories, running formatters, and pushing commits.
 - `prfectbot/main.py` – FastAPI application exposing the `/webhook` endpoint and root page.
+- Additional planning documents can be found in the `docs/roadmap` directory.
 
 ## Testing
 
