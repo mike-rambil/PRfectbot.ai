@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from prfectbot.gitutils import commit_and_push_fixes
 
@@ -23,5 +22,5 @@ def test_commit_and_push_no_changes():
 def test_commit_and_push_error():
     with patch(
         "prfectbot.gitutils.detect_code_changes_v2", return_value=["M file1.py"]
-    ), patch("subprocess.run", side_effect=Exception("fail")) as mock_run:
+    ), patch("subprocess.run", side_effect=Exception("fail")):
         assert commit_and_push_fixes("/tmp/clone", "feature-branch") is False

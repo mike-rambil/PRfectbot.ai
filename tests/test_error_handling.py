@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from prfectbot.webhook_handler import handle_webhook_event
 

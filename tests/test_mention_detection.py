@@ -1,4 +1,3 @@
-import pytest
 from prfectbot.github_events import is_fix_requested
 
 

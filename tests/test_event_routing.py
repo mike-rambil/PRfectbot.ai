@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 from prfectbot.main import app
 from unittest.mock import patch

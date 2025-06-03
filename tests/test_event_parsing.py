@@ -1,4 +1,3 @@
-import pytest
 from prfectbot.github_events import parse_pr_comment_event
 
 

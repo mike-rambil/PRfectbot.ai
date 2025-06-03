@@ -1,7 +1,8 @@
-print("DEBUG SCRIPT STARTED")
 import sys
 import os
 import prfectbot.gitutils
+
+print("DEBUG SCRIPT STARTED")
 
 print("sys.path:", sys.path)
 print("cwd:", os.getcwd())
