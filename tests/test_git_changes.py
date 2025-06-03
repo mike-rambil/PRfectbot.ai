@@ -1,14 +1,12 @@
 import sys
 import os
+from unittest.mock import MagicMock
+import prfectbot.gitutils
+from prfectbot.gitutils import detect_code_changes_v2
 
 print("sys.path:", sys.path)
 print("cwd:", os.getcwd())
-import pytest
-from unittest.mock import patch, MagicMock
-import prfectbot.gitutils
-
 print("prfectbot.gitutils path:", prfectbot.gitutils.__file__)
-from prfectbot.gitutils import detect_code_changes_v2
 
 
 # Example function to detect code changes (to be implemented in main code)

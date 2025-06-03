@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from prfectbot.gitutils import run_linter_formatter
 

@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from prfectbot.gitutils import clone_pr_branch, run_git_clone
 

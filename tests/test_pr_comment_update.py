@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from prfectbot.github_api import post_pr_comment
 
