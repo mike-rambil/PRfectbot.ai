@@ -1,12 +1,10 @@
 from fastapi import FastAPI, Request, Response, status
 from prfectbot.github_events import (
-    parse_pr_comment_event,
     is_fix_requested,
     extract_pr_repo_branch,
 )
-from prfectbot.gitutils import clone_pr_branch
+from prfectbot.pr_processor import process_pull_request
 import logging
-import tempfile
 from fastapi.responses import HTMLResponse
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -23,8 +21,10 @@ async def log_requests(request: Request, call_next):
     logging.info(f"Client IP: {request.client.host if request.client else 'unknown'}")
     logging.info(f"Cookies: {request.cookies}")
     response = await call_next(request)
-    logging.info(f"Response status: {response.status_code}")
-    logging.info(f"Response headers: {dict(response.headers)}")
+    status_code = getattr(response, "status_code", None)
+    headers = getattr(response, "headers", {})
+    logging.info(f"Response status: {status_code}")
+    logging.info(f"Response headers: {dict(headers)}")
     return response
 
 
@@ -35,19 +35,15 @@ async def webhook(request: Request):
         payload = await request.json()
         comment_body = payload.get("comment", {}).get("body", "")
         if is_fix_requested(comment_body):
-            # Extract repo/branch info from a related PR event (simulate for now)
             pr_info = extract_pr_repo_branch(payload)
-            # Use a temp dir for cloning
-            with tempfile.TemporaryDirectory() as tmpdir:
-                result = clone_pr_branch(
-                    pr_info.get("repo_owner"),
-                    pr_info.get("repo_name"),
-                    pr_info.get("branch"),
-                    tmpdir,
-                )
-                logging.warning(
-                    f"🤖 PRfectbot is warming up its fixing lasers! Pew pew! 🚀 Clone result: {result}"
-                )
+            process_pull_request(
+                pr_info.get("repo_owner"),
+                pr_info.get("repo_name"),
+                pr_info.get("branch"),
+            )
+            logging.warning(
+                "🤖 PRfectbot processed the pull request and pushed any fixes."
+            )
             return {"status": "fix requested"}
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

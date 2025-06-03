@@ -65,11 +65,10 @@ def test_webhook_ignores_push_event():
     assert response.status_code == 204  # No Content, ignored
 
 
-def test_webhook_calls_clone_pr_branch_on_fix():
+def test_webhook_calls_process_pull_request_on_fix():
     headers = {"X-GitHub-Event": "issue_comment"}
-    with patch("prfectbot.main.clone_pr_branch") as mock_clone:
-        mock_clone.return_value = True
+    with patch("prfectbot.main.process_pull_request") as mock_process:
+        mock_process.return_value = True
         response = client.post("/webhook", json=PR_COMMENT_FIX_EVENT, headers=headers)
-        # Should be called with correct arguments (repo_owner, repo_name, branch, tmpdir)
-        assert mock_clone.call_count == 1
+        assert mock_process.call_count == 1
         assert response.status_code == 200
