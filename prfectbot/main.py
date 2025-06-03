@@ -6,6 +6,7 @@ from prfectbot.github_events import (
 from prfectbot.pr_processor import process_pull_request
 import logging
 from fastapi.responses import HTMLResponse
+from prfectbot.github_api import post_pr_comment
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -36,6 +37,13 @@ async def webhook(request: Request):
         comment_body = payload.get("comment", {}).get("body", "")
         if is_fix_requested(comment_body):
             pr_info = extract_pr_repo_branch(payload)
+            if pr_info.get("pr_number"):
+                post_pr_comment(
+                    pr_info.get("repo_owner"),
+                    pr_info.get("repo_name"),
+                    pr_info.get("pr_number"),
+                    "🤖 PRfectbot is working on your request!"
+                )
             process_pull_request(
                 pr_info.get("repo_owner"),
                 pr_info.get("repo_name"),
