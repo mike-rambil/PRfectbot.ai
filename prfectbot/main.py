@@ -40,6 +40,7 @@ async def webhook(request: Request):
                 pr_info.get("repo_owner"),
                 pr_info.get("repo_name"),
                 pr_info.get("branch"),
+                pr_info.get("pr_number"),
             )
             logging.warning(
                 "🤖 PRfectbot processed the pull request and pushed any fixes."

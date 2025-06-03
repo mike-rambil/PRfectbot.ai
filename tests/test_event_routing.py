@@ -70,5 +70,10 @@ def test_webhook_calls_process_pull_request_on_fix():
     with patch("prfectbot.main.process_pull_request") as mock_process:
         mock_process.return_value = True
         response = client.post("/webhook", json=PR_COMMENT_FIX_EVENT, headers=headers)
-        assert mock_process.call_count == 1
+        mock_process.assert_called_once_with(
+            "octocat",
+            "Hello-World",
+            "feature-branch",
+            101,
+        )
         assert response.status_code == 200
