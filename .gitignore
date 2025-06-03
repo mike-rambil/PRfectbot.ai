@@ -28,3 +28,8 @@ htmlcov/
 
 # VSCode settings
 .vscode/
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
